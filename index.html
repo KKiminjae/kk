@@ -1,0 +1,484 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="김민재를 소개하는 개인 웹페이지입니다."
+    />
+    <title>김민재 | 자기소개</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --ink: #181818;
+        --muted: #626262;
+        --line: #ded8ce;
+        --paper: #f7f4ee;
+        --panel: #ffffff;
+        --accent: #0f6b5f;
+        --accent-dark: #0a463f;
+        --warm: #cf6f3c;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        background: var(--paper);
+        color: var(--ink);
+        font-family:
+          Inter, Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          sans-serif;
+        line-height: 1.6;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .site-header {
+        position: fixed;
+        z-index: 10;
+        top: 0;
+        left: 0;
+        right: 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 18px clamp(20px, 5vw, 64px);
+        color: #fff;
+        background: linear-gradient(180deg, rgb(0 0 0 / 0.48), transparent);
+      }
+
+      .brand {
+        font-weight: 800;
+        letter-spacing: 0;
+      }
+
+      .nav {
+        display: flex;
+        gap: clamp(14px, 2vw, 26px);
+        font-size: 0.95rem;
+        font-weight: 700;
+      }
+
+      .hero {
+        position: relative;
+        min-height: 92svh;
+        display: grid;
+        align-items: center;
+        padding: 110px clamp(20px, 6vw, 80px) 80px;
+        overflow: hidden;
+        color: #fff;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(90deg, rgb(0 0 0 / 0.78), rgb(0 0 0 / 0.38) 48%, rgb(0 0 0 / 0.06)),
+          url("assets/hero-workspace.png") center / cover no-repeat;
+      }
+
+      .hero-content {
+        position: relative;
+        max-width: 720px;
+      }
+
+      .eyebrow {
+        margin: 0 0 14px;
+        color: #f4c095;
+        font-size: 0.9rem;
+        font-weight: 800;
+      }
+
+      h1 {
+        margin: 0;
+        max-width: 11ch;
+        font-size: clamp(4rem, 10vw, 8.75rem);
+        line-height: 0.92;
+        letter-spacing: 0;
+      }
+
+      .hero-copy {
+        max-width: 640px;
+        margin: 28px 0 34px;
+        color: rgb(255 255 255 / 0.88);
+        font-size: clamp(1.05rem, 1.7vw, 1.35rem);
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 46px;
+        padding: 0 20px;
+        border: 1px solid rgb(255 255 255 / 0.36);
+        border-radius: 8px;
+        font-weight: 800;
+        transition:
+          transform 160ms ease,
+          background 160ms ease,
+          color 160ms ease;
+      }
+
+      .button:hover {
+        transform: translateY(-2px);
+      }
+
+      .button.primary {
+        border-color: #fff;
+        background: #fff;
+        color: var(--ink);
+      }
+
+      main {
+        display: grid;
+        gap: 0;
+      }
+
+      section {
+        padding: clamp(58px, 8vw, 104px) clamp(20px, 6vw, 80px);
+      }
+
+      .section-inner {
+        width: min(1120px, 100%);
+        margin: 0 auto;
+      }
+
+      .intro {
+        background: var(--panel);
+      }
+
+      .split {
+        display: grid;
+        grid-template-columns: minmax(0, 0.85fr) minmax(280px, 1.15fr);
+        gap: clamp(32px, 6vw, 72px);
+        align-items: start;
+      }
+
+      .section-label {
+        margin: 0 0 10px;
+        color: var(--accent);
+        font-size: 0.88rem;
+        font-weight: 900;
+      }
+
+      h2 {
+        margin: 0;
+        max-width: 620px;
+        font-size: clamp(2rem, 4vw, 4rem);
+        line-height: 1.04;
+        letter-spacing: 0;
+      }
+
+      .lead {
+        margin: 0;
+        color: var(--muted);
+        font-size: clamp(1.06rem, 1.6vw, 1.24rem);
+      }
+
+      .profile-list {
+        display: grid;
+        gap: 14px;
+        margin-top: 30px;
+      }
+
+      .profile-item {
+        display: grid;
+        grid-template-columns: 110px 1fr;
+        gap: 18px;
+        padding-top: 14px;
+        border-top: 1px solid var(--line);
+      }
+
+      .profile-item strong {
+        color: var(--accent-dark);
+      }
+
+      .skills {
+        background: #e9efe8;
+      }
+
+      .skill-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 16px;
+        margin-top: 34px;
+      }
+
+      .skill-card {
+        min-height: 190px;
+        padding: 24px;
+        border: 1px solid rgb(15 107 95 / 0.16);
+        border-radius: 8px;
+        background: rgb(255 255 255 / 0.78);
+      }
+
+      .skill-card h3 {
+        margin: 0 0 10px;
+        font-size: 1.2rem;
+      }
+
+      .skill-card p {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      .timeline {
+        background: var(--panel);
+      }
+
+      .timeline-list {
+        display: grid;
+        gap: 0;
+        margin-top: 34px;
+        border-top: 1px solid var(--line);
+      }
+
+      .timeline-item {
+        display: grid;
+        grid-template-columns: 160px 1fr;
+        gap: 24px;
+        padding: 24px 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .timeline-item time {
+        color: var(--warm);
+        font-weight: 900;
+      }
+
+      .timeline-item h3 {
+        margin: 0 0 8px;
+      }
+
+      .timeline-item p {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      .contact {
+        background: #20201d;
+        color: #fff;
+      }
+
+      .contact .section-label {
+        color: #f4c095;
+      }
+
+      .contact h2 {
+        max-width: 760px;
+      }
+
+      .contact-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 30px;
+      }
+
+      .contact-link {
+        display: inline-flex;
+        align-items: center;
+        min-height: 44px;
+        padding: 0 16px;
+        border: 1px solid rgb(255 255 255 / 0.22);
+        border-radius: 8px;
+        color: rgb(255 255 255 / 0.9);
+      }
+
+      footer {
+        padding: 24px clamp(20px, 6vw, 80px);
+        background: #20201d;
+        color: rgb(255 255 255 / 0.58);
+        font-size: 0.9rem;
+      }
+
+      @media (max-width: 760px) {
+        .site-header {
+          align-items: flex-start;
+          gap: 12px;
+          padding: 16px 20px;
+        }
+
+        .nav {
+          gap: 12px;
+          font-size: 0.86rem;
+        }
+
+        .hero {
+          min-height: 88svh;
+          padding-top: 118px;
+        }
+
+        .hero::before {
+          background:
+            linear-gradient(180deg, rgb(0 0 0 / 0.7), rgb(0 0 0 / 0.55)),
+            url("assets/hero-workspace.png") center / cover no-repeat;
+        }
+
+        h1 {
+          font-size: clamp(3.4rem, 18vw, 5.6rem);
+        }
+
+        .split,
+        .timeline-item,
+        .profile-item {
+          grid-template-columns: 1fr;
+          gap: 10px;
+        }
+
+        .skill-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header" aria-label="주요 메뉴">
+      <a class="brand" href="#top">KIM MINJAE</a>
+      <nav class="nav">
+        <a href="#about">소개</a>
+        <a href="#skills">역량</a>
+        <a href="#contact">연락</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-label="김민재 소개">
+        <div class="hero-content">
+          <p class="eyebrow">PERSONAL INTRODUCTION</p>
+          <h1>김민재</h1>
+          <p class="hero-copy">
+            꾸준히 배우고 직접 만들어 보며 성장하는 사람입니다. 명확한
+            목표를 세우고, 작은 실행을 쌓아 결과로 연결하는 일을 좋아합니다.
+          </p>
+          <div class="actions">
+            <a class="button primary" href="#about">자세히 보기</a>
+            <a class="button" href="#contact">연락하기</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="intro" id="about">
+        <div class="section-inner split">
+          <div>
+            <p class="section-label">ABOUT</p>
+            <h2>생각을 정리하고, 빠르게 실험하고, 끝까지 완성합니다.</h2>
+          </div>
+          <div>
+            <p class="lead">
+              안녕하세요. 저는 김민재입니다. 새로운 문제를 만나면 먼저 핵심을
+              파악하고, 필요한 도구를 익혀 직접 결과물을 만드는 방식으로
+              배웁니다. 이 페이지는 저의 관심사와 강점을 간단히 소개하기 위해
+              만들었습니다.
+            </p>
+            <div class="profile-list" aria-label="프로필 정보">
+              <div class="profile-item">
+                <strong>관심사</strong>
+                <span>웹 제작, 콘텐츠 기획, 문제 해결, 생산성 도구</span>
+              </div>
+              <div class="profile-item">
+                <strong>강점</strong>
+                <span>성실함, 빠른 학습, 깔끔한 정리, 책임감 있는 실행</span>
+              </div>
+              <div class="profile-item">
+                <strong>방향</strong>
+                <span>배운 것을 실제 서비스와 프로젝트로 연결하기</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="skills" id="skills">
+        <div class="section-inner">
+          <p class="section-label">SKILLS</p>
+          <h2>제가 잘하고 싶고, 계속 키워 가는 역량입니다.</h2>
+          <div class="skill-grid">
+            <article class="skill-card">
+              <h3>웹 제작</h3>
+              <p>
+                HTML, CSS, JavaScript를 기반으로 정보를 보기 좋게 정리하고
+                반응형 화면으로 구현합니다.
+              </p>
+            </article>
+            <article class="skill-card">
+              <h3>문제 해결</h3>
+              <p>
+                복잡한 일을 작은 단위로 나누고 우선순위를 정해 하나씩
+                해결합니다.
+              </p>
+            </article>
+            <article class="skill-card">
+              <h3>커뮤니케이션</h3>
+              <p>
+                필요한 내용을 명확하게 전달하고, 피드백을 바탕으로 결과물을
+                개선합니다.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="timeline">
+        <div class="section-inner">
+          <p class="section-label">NOW</p>
+          <h2>지금은 기본기를 다지고 작은 프로젝트를 완성하고 있습니다.</h2>
+          <div class="timeline-list">
+            <article class="timeline-item">
+              <time>01</time>
+              <div>
+                <h3>기본기 학습</h3>
+                <p>웹 구조, 스타일링, 배포 흐름을 직접 익히고 있습니다.</p>
+              </div>
+            </article>
+            <article class="timeline-item">
+              <time>02</time>
+              <div>
+                <h3>프로젝트 제작</h3>
+                <p>아이디어를 실제 페이지와 결과물로 만드는 연습을 합니다.</p>
+              </div>
+            </article>
+            <article class="timeline-item">
+              <time>03</time>
+              <div>
+                <h3>기록과 개선</h3>
+                <p>과정과 결과를 정리하고 다음 작업에 반영합니다.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="contact" id="contact">
+        <div class="section-inner">
+          <p class="section-label">CONTACT</p>
+          <h2>함께 이야기하고 싶은 일이 있다면 편하게 연락해 주세요.</h2>
+          <div class="contact-row">
+            <a class="contact-link" href="mailto:hello@example.com">hello@example.com</a>
+            <a class="contact-link" href="https://github.com/KKiminjae">GitHub</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>© 2026 Kim Minjae. All rights reserved.</footer>
+  </body>
+</html>
